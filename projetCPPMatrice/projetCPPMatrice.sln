@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1433
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "projetCPPMatrice", "projetCPPMatrice\projetCPPMatrice.vcxproj", "{5306CB7F-14CE-4539-87D8-D297C0F58132}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Debug|x64.ActiveCfg = Debug|x64
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Debug|x64.Build.0 = Debug|x64
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Debug|x86.ActiveCfg = Debug|Win32
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Debug|x86.Build.0 = Debug|Win32
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Release|x64.ActiveCfg = Release|x64
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Release|x64.Build.0 = Release|x64
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Release|x86.ActiveCfg = Release|Win32
+		{5306CB7F-14CE-4539-87D8-D297C0F58132}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80A5D3B7-0520-4DC5-B996-CD1F4B0A7DF7}
+	EndGlobalSection
+EndGlobal

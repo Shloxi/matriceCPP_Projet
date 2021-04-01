@@ -1,0 +1,57 @@
+#ifndef CMatrice_h
+#define CMatrice_h
+
+template <typename T> class CMatrice {
+
+private:
+	const int eNbLigne;
+	const int eNbCol;
+	T ** tppTableau;
+
+public:
+	// Constructors
+	CMatrice();
+	CMatrice(int eLigne,int eCol, T ** tppValeurs);
+	/*
+		Problèmes à identifier :	-) Le fichier n'existe pas
+									-) Le fichier est vide
+	*/
+	CMatrice(char * filename);
+	~CMatrice();
+
+	// Methods
+	
+	/* #####################
+		Problèmes généraux :	-Les opérateurs du type T doivent être surchagés obligatoirement
+	   ##################### */
+
+	CMatrice<T> multiply(int eVal);
+
+	CMatrice<T> divide(int eVal);
+
+	CMatrice<T> transpose();
+
+	/*
+		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
+								-) Les matrices doivent être de même taille
+	*/
+	CMatrice<T> addMat(CMatrice<T> CMat);
+
+	/*
+		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
+									-) Les matrices doivent être de même taille
+	*/
+	CMatrice<T> subMat(CMatrice<T> CMat);
+
+	/*
+		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
+									-) Le nombre de colonnes de this doit être égal au nombre
+										de ligne de CMat
+	*/
+	CMatrice<T> multiplyMat(CMatrice<T> CMat);
+
+	void display();
+
+};
+
+#endif // !CMatrice_h

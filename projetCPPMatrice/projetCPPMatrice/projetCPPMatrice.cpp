@@ -3,9 +3,12 @@
 
 #include <iostream>
 
+#include "CMatrice.h"
+#include "CEXception.h"
+
 int main()
 {
-    std::cout << "Début du projet\n";
+    std::cout << "Branche dev_Romu\n";
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+#include "CMatrice.h"
+#include "CEXception.h"
+
 int main()
 {
     std::cout << "Branche dev_Romu\n";

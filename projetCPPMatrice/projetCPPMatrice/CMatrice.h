@@ -4,14 +4,14 @@
 template <typename T> class CMatrice {
 
 private:
-	int eNbLigne;
-	int eNbCol;
-	T** tppTableau;
+	const int eNbLigne;
+	const int eNbCol;
+	T ** tppTableau;
 
 public:
 	// Constructors
 	CMatrice();
-	CMatrice(int eLigne, eCol, T** tppValeurs);
+	CMatrice(int eLigne,int eCol, T ** tppValeurs);
 	/*
 		Problèmes à identifier :	-) Le fichier n'existe pas
 									-) Le fichier est vide

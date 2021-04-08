@@ -151,7 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CException.cpp" />
+    <ClCompile Include="CMatrice.cpp" />
     <ClCompile Include="projetCPPMatrice.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CMatrice.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

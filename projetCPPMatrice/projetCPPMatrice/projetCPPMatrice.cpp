@@ -5,7 +5,7 @@
 
 int main()
 {
-    std::cout << "Début du projet\n";
+    std::cout << "Hello World!\n";
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

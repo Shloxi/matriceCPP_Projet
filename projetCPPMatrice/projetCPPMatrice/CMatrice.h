@@ -4,8 +4,8 @@
 template <typename T> class CMatrice {
 
 private:
-	const int eNbLigne;
-	const int eNbCol;
+	int eNbLigne;
+	int eNbCol;
 	T ** tppTableau;
 
 public:

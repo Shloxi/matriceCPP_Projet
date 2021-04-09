@@ -4,14 +4,14 @@
 template <typename T> class CMatrice {
 
 private:
-	const int eNbLigne;
-	const int eNbCol;
+	int eNbLigne;
+	int eNbCol;
 	T ** tppTableau;
 
 public:
 	// Constructors
 	CMatrice();
-	CMatrice(int eLigne,int eCol, T ** tppValeurs);
+	CMatrice(int eLigne, int eCol, T ** tppValeurs);
 	/*
 		Problèmes à identifier :	-) Le fichier n'existe pas
 									-) Le fichier est vide
@@ -20,7 +20,7 @@ public:
 	~CMatrice();
 
 	// Methods
-	
+
 	/* #####################
 		Problèmes généraux :	-Les opérateurs du type T doivent être surchagés obligatoirement
 	   ##################### */

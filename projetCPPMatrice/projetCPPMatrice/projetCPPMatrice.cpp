@@ -2,9 +2,13 @@
 //
 
 #include <iostream>
-
+#include "Cmatrice.cpp"
 #include "CMatrice.h"
 #include "CException.h"
+
+struct aze {
+	int aze;
+};
 
 int main()
 {
@@ -19,31 +23,34 @@ int main()
 		tpptableau[i] = new int[nbCol];
 	}	
 	tpptableau[0][0] = 0;
-	tpptableau[0][1] = 0;
-	tpptableau[0][2] = 0;
-	tpptableau[0][3] = 0;
-	tpptableau[0][4] = 0;
-	tpptableau[1][0] = 0;
-	tpptableau[1][1] = 0;
-	tpptableau[1][2] = 0;
-	tpptableau[1][3] = 0;
-	tpptableau[1][4] = 0;
-	tpptableau[2][0] = 0;
-	tpptableau[2][1] = 0;
-	tpptableau[2][2] = 0;
-	tpptableau[2][3] = 0;
-	tpptableau[2][4] = 0; 
-	tpptableau[3][0] = 0;
-	tpptableau[3][1] = 0;
-	tpptableau[3][2] = 0;
-	tpptableau[3][3] = 0;
-	tpptableau[3][4] = 0;
-	tpptableau[4][0] = 0;
-	tpptableau[4][1] = 0;
-	tpptableau[4][2] = 0;
-	tpptableau[4][3] = 0;
-	tpptableau[4][4] = 0;
-	//CMatrice<int> * M1 = new CMatrice<int>(5,5, tpptableau);
+	tpptableau[0][1] = 1;
+	tpptableau[0][2] = 2;
+	tpptableau[0][3] = 3;
+	tpptableau[0][4] = 4;
+	tpptableau[1][0] = 5;
+	tpptableau[1][1] = 6;
+	tpptableau[1][2] = 7;
+	tpptableau[1][3] = 8;
+	tpptableau[1][4] = 9;
+	tpptableau[2][0] = 10;
+	tpptableau[2][1] = 11;
+	tpptableau[2][2] = 12;
+	tpptableau[2][3] = 13;
+	tpptableau[2][4] = 14;
+	tpptableau[3][0] = 15;
+	tpptableau[3][1] = 16;
+	tpptableau[3][2] = 17;
+	tpptableau[3][3] = 18;
+	tpptableau[3][4] = 19;
+	tpptableau[4][0] = 20;
+	tpptableau[4][1] = 21;
+	tpptableau[4][2] = 22;
+	tpptableau[4][3] = 23;
+	tpptableau[4][4] = 24;
+	CMatrice<int> * M1 = new CMatrice<int>(5,5, tpptableau);
+	aze azez;
+	
+	M1->display();
 	//CMatrice<int> * M1 = new CMatrice<int>();
 	//CException * e = new CException();
 

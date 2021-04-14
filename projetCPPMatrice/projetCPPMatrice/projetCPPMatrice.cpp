@@ -2,9 +2,8 @@
 //
 
 #include <iostream>
-
+#include "Cmatrice.cpp"
 #include "CMatrice.h"
-#include "CMatrice.cpp"
 #include "CException.h"
 
 int main()
@@ -19,13 +18,13 @@ int main()
 	for (int i = 0; i < nbLig; ++i) {
 		tpptableau[i] = new int[nbCol];
 	}
-	tpptableau[0][0] = 0;
+	tpptableau[0][0] = 1;
 	tpptableau[0][1] = 0;
 	tpptableau[0][2] = 0;
 	tpptableau[0][3] = 0;
 	tpptableau[0][4] = 0;
 	tpptableau[1][0] = 0;
-	tpptableau[1][1] = 0;
+	tpptableau[1][1] = 3;
 	tpptableau[1][2] = 0;
 	tpptableau[1][3] = 0;
 	tpptableau[1][4] = 0;
@@ -33,20 +32,27 @@ int main()
 	tpptableau[2][1] = 0;
 	tpptableau[2][2] = 0;
 	tpptableau[2][3] = 0;
-	tpptableau[2][4] = 0;
+	tpptableau[2][4] = 5;
 	tpptableau[3][0] = 0;
 	tpptableau[3][1] = 0;
 	tpptableau[3][2] = 0;
 	tpptableau[3][3] = 0;
 	tpptableau[3][4] = 0;
 	tpptableau[4][0] = 0;
-	tpptableau[4][1] = 0;
+	tpptableau[4][1] = 6;
 	tpptableau[4][2] = 0;
 	tpptableau[4][3] = 0;
 	tpptableau[4][4] = 0;
-	//CMatrice<int> * M1 = new CMatrice<int>(5,5, tpptableau);
-	CMatrice<int> * M1 = new CMatrice<int>();
-	//CException * e = new CException();
+
+	try {
+		CMatrice<int> * M1 = new CMatrice<int>(5, 5, tpptableau);
+
+		M1->display();
+	}
+	catch (CException e) {
+
+	}
+
 
 	std::cout << "All work done" << std::endl;
 }

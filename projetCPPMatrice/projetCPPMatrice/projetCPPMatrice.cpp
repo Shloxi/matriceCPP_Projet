@@ -48,7 +48,7 @@ int main()
 	tpptableau[4][3] = 23;
 	tpptableau[4][4] = 24;
 	CMatrice<int> * M1 = new CMatrice<int>(5,5, tpptableau);
-	aze azez;
+	//aze azez;
 	
 	M1->display();
 	//CMatrice<int> * M1 = new CMatrice<int>();

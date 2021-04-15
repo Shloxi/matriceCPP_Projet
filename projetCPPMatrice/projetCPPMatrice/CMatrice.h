@@ -11,7 +11,7 @@ private:
 public:
 	// Constructors
 	CMatrice();
-	CMatrice(int eLigne,int eCol, T ** tppValeurs);
+	CMatrice(int eLigne, int eCol, T ** tppValeurs);
 	/*
 		Problèmes à identifier :	-) Le fichier n'existe pas
 									-) Le fichier est vide
@@ -20,7 +20,7 @@ public:
 	~CMatrice();
 
 	// Methods
-	
+
 	/* #####################
 		Problèmes généraux :	-Les opérateurs du type T doivent être surchagés obligatoirement
 	   ##################### */

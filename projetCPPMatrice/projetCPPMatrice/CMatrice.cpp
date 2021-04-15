@@ -21,23 +21,16 @@ template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol, T ** tppValeur
 }
 
 template <typename T> void CMatrice<T>::display() {
-	if (eNbLigne == 0 || eNbCol == 0) {
-		std::cout << "Matrice Vide" << std::endl;
+	if (eNbLigne == NULL || eNbCol == NULL) {
+		cout << "Matrice Vide" << endl;
 	}
 	else {
 		for (int i = 0; i < eNbLigne; ++i) {
 			for (int y = 0; y < eNbCol; ++y) {
-				T temp = tppTableau[i][y];
-				std::cout << tppTableau[i][y] + ' ';
-				/*
-				if (temp != NULL) {
-					
-				}
-				else {
-					throw CException();
-				}*/
+				cout << tppTableau[i][y] << " ";
 			}
-			std::cout << std::endl;
+			cout << endl;
 		}
+		cout << endl;
 	}
 }

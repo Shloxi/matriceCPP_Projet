@@ -18,6 +18,7 @@ int main()
 	for (int i = 0; i < nbLig; ++i) {
 		tpptableau[i] = new int[nbCol];
 	}
+
 	tpptableau[0][0] = 1;
 	tpptableau[0][1] = 0;
 	tpptableau[0][2] = 0;

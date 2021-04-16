@@ -10,7 +10,7 @@ int main()
 {
 	std::cout << "Branche dev_Romu\n";
 
-	//Création de tableaux dynamiques
+	//Création du tableau de pointeurs de pointeurs pour la Matrice
 	int nbLig = 5;
 	int nbCol = 5;
 	int ** tpptableau;
@@ -48,10 +48,22 @@ int main()
 	try {
 		CMatrice<int> * M1 = new CMatrice<int>(5, 5, tpptableau);
 
+		// Affichage de M1
+		M1->display();
+
+		// Multiplication de M1
+		CMatrice<int> * M2 = M1->multiply(5);
+		M2->display();
+
+		// Division de M1
+		CMatrice<int> * M3 = M1->divide(5);
+		M3->display();
+	
+		// On verifie si M1 a été modifié
 		M1->display();
 	}
 	catch (CException e) {
-
+		std::cout << e.what() << std::endl;
 	}
 
 	std::cout << "All work done" << std::endl;

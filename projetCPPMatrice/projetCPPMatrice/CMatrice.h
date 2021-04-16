@@ -12,11 +12,12 @@ public:
 	// Constructors
 	CMatrice();
 	CMatrice(int eLigne, int eCol, T ** tppValeurs);
+	CMatrice(const CMatrice<T>& m);
 	/*
 		Problèmes à identifier :	-) Le fichier n'existe pas
 									-) Le fichier est vide
 	*/
-	CMatrice(char * filename);
+	//CMatrice(char * filename);
 	~CMatrice();
 
 	// Methods
@@ -25,9 +26,9 @@ public:
 		Problèmes généraux :	-Les opérateurs du type T doivent être surchagés obligatoirement
 	   ##################### */
 
-	CMatrice<T> multiply(int eVal);
+	CMatrice<T> * multiply(int eVal) const throw();
 
-	CMatrice<T> divide(int eVal);
+	CMatrice<T> * divide(int eVal) const throw();
 
 	CMatrice<T> transpose();
 
@@ -50,7 +51,7 @@ public:
 	*/
 	CMatrice<T> multiplyMat(CMatrice<T> CMat);
 
-	void display();
+	void display() const throw();
 
 };
 

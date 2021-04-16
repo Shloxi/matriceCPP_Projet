@@ -1,15 +1,22 @@
 #ifndef CException_h
 #define CException_h
 
-class CException {
+#include <exception>
+using namespace std;
+
+class CException: public exception
+{
 	private :
 		int eIndexError;
+		char* msgErreur;
 
 	public :
 		// Constructors
 		CException();
-
-		// Methods
+		CException(char * msg);
+		virtual ~CException() throw();
+		// Methods 
+		virtual const char* what() const throw();
 		void ExceptModifErrorType(int eErrorType);
 		int ExceptGetIndexError();
 };	

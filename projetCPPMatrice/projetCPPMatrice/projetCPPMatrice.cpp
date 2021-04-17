@@ -58,6 +58,9 @@ int main()
 		// Division de M1
 		CMatrice<int> * M3 = M1->divide(5);
 		M3->display();
+
+		CMatrice<int> * MTranspo = M1->transpose();
+		MTranspo->display();
 	
 		// On verifie si M1 a été modifié
 		M1->display();

@@ -1,0 +1,7 @@
+TypeMatrice=float
+NBLignes=2
+NBColonnes=3
+Matrice=[
+5 3 2
+1 -2 8
+]

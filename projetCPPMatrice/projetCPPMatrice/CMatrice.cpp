@@ -228,6 +228,17 @@ template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw(
 	return res;
 }
 
+template <typename T> CMatrice<T> * CMatrice<T>::operator*(int const c) {
+	CMatrice<T> * res = this->multiply(c);
+	return res;
+}
+
+template <typename T> CMatrice<T>* operator*(int const c, CMatrice<T> const M)
+{
+	CMatrice<T> * res = M.multiply(c);
+	return res;
+}
+
 template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() {
 	// On verifie que les attributs sont initalises
 	if (eNbLigne == 0 || eNbCol == 0) {

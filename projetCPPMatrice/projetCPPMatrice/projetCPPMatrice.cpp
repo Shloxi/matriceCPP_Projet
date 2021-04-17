@@ -64,13 +64,22 @@ int main()
 
 		// On test la construction de matrice par fichier.
 
-		//CMatrice<float> * M4 = new CMatrice<float>("testMatriceFalse.txt");
+		// CMatrice<float> * M4 = new CMatrice<float>("testMatriceFalse.txt");
 		CMatrice<float> * M5 = new CMatrice<float>("testMatriceTrue.txt");
 		M5->display();
 
+		// Test surcharge
+		CMatrice<int> * MTest;
+		MTest = (*M1)*5;
+		MTest->display();
+
+		CMatrice<int> * MTest2;
+		MTest2 = 5 * (*M1);
+		MTest2->display();
+
 	}
 	catch (CException e) {
-		cerr << e.ExceptGetIndexError();
+		std::cerr << e.ExceptGetIndexError();
 	}
 
 	std::cout << "All work done" << std::endl;

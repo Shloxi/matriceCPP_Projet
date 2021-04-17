@@ -1,4 +1,4 @@
-#ifndef CMatrice_h
+ï»¿#ifndef CMatrice_h
 #define CMatrice_h
 
 template <typename T> class CMatrice {
@@ -15,7 +15,7 @@ public:
 	CMatrice(const CMatrice<T>& m);
 	CMatrice(const char * filename) throw();
 	/*
-		Problèmes à identifier :	-) Le fichier n'existe pas
+		ProblÃ¨mes Ã  identifier :	-) Le fichier n'existe pas
 									-) Le fichier est vide
 	*/
 	~CMatrice();
@@ -23,7 +23,7 @@ public:
 	// Methods
 
 	/* #####################
-		Problèmes généraux :	-Les opérateurs du type T doivent être surchagés obligatoirement
+		ProblÃ¨mes gÃ©nÃ©raux :	-Les opÃ©rateurs du type T doivent Ãªtre surchagÃ©s obligatoirement
 	   ##################### */
 
 	CMatrice<T> * multiply(int eVal) const throw();
@@ -33,26 +33,31 @@ public:
 	CMatrice<T> transpose();
 
 	/*
-		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
-								-) Les matrices doivent être de même taille
+		ProblÃ¨mes Ã  identifier :	-) Les 2 matrices doivent Ãªtre du mÃªme type
+								-) Les matrices doivent Ãªtre de mÃªme taille
 	*/
 	CMatrice<T> addMat(CMatrice<T> CMat);
 
 	/*
-		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
-									-) Les matrices doivent être de même taille
+		ProblÃ¨mes Ã  identifier :	-) Les 2 matrices doivent Ãªtre du mÃªme type
+									-) Les matrices doivent Ãªtre de mÃªme taille
 	*/
 	CMatrice<T> subMat(CMatrice<T> CMat);
 
 	/*
-		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
-									-) Le nombre de colonnes de this doit être égal au nombre
+		ProblÃ¨mes Ã  identifier :	-) Les 2 matrices doivent Ãªtre du mÃªme type
+									-) Le nombre de colonnes de this doit Ãªtre Ã©gal au nombre
 										de ligne de CMat
 	*/
 	CMatrice<T> multiplyMat(CMatrice<T> CMat);
 
 	void display() const throw();
 
+	CMatrice<T> * operator*(int const c);
 };
+
+template <typename T> CMatrice<T> * operator*(int const c, CMatrice<T> const M);
+
+
 
 #endif // !CMatrice_h

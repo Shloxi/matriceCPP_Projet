@@ -19,7 +19,7 @@ template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol) {
 	eNbLigne = eLigne;
 	eNbCol = eCol;
 
-	tppTableau = NULL;
+	tppTableau = new T *[eNbCol];
 }
 
 template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol, T ** tppValeurs) {
@@ -262,15 +262,14 @@ template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() 
 
 
 template <typename T> CMatrice<T> * CMatrice<T>::transpose() {
-	CMatrice<T> * res = new Cmatrice<T>(eNbCol, eNbLigne);
-	T ** tppTransposVal;
-	tppTransposVal = new T *[eNbCol];
-	for (int i = 0; i < eNbLigne; i++) {
-		for (int j = 0; j < eNbCol; j++) {
-			tppTransposVal[j][i] = tppTableau[i][j];
+	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
+
+	for (int i = 0; i < eNbCol; i++) {
+		res->tppTableau[i] = new T[eNbLigne];
+		for (int j = 0; j < eNbLigne; j++) {
+			res->tppTableau[i][j] = tppTableau[j][i];
 		}
 	}
-	res->tppTableau = tppTransposVal;
 	return res;
 }
 

@@ -53,10 +53,10 @@ public:
 
 	void display() const throw();
 
-	CMatrice<T> * operator*(int const c);
+	CMatrice<T> & operator*(int const c);
 };
 
-template <typename T> CMatrice<T> * operator*(int const c, CMatrice<T> const M);
+template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M);
 
 
 

@@ -13,11 +13,11 @@ public:
 	CMatrice();
 	CMatrice(int eLigne, int eCol, T ** tppValeurs);
 	CMatrice(const CMatrice<T>& m);
+	CMatrice(const char * filename) throw();
 	/*
 		Problèmes à identifier :	-) Le fichier n'existe pas
 									-) Le fichier est vide
 	*/
-	//CMatrice(char * filename);
 	~CMatrice();
 
 	// Methods

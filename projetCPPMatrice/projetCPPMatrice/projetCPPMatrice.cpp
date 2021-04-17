@@ -58,12 +58,19 @@ int main()
 		// Division de M1
 		CMatrice<int> * M3 = M1->divide(5);
 		M3->display();
-	
+
 		// On verifie si M1 a été modifié
 		M1->display();
+
+		// On test la construction de matrice par fichier.
+
+		//CMatrice<float> * M4 = new CMatrice<float>("testMatriceFalse.txt");
+		CMatrice<float> * M5 = new CMatrice<float>("testMatriceTrue.txt");
+		M5->display();
+
 	}
 	catch (CException e) {
-		std::cout << e.what() << std::endl;
+		cerr << e.ExceptGetIndexError();
 	}
 
 	std::cout << "All work done" << std::endl;

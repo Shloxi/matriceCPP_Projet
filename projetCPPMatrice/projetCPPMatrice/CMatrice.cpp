@@ -19,7 +19,13 @@ template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol) {
 	eNbLigne = eLigne;
 	eNbCol = eCol;
 
-	tppTableau = new T *[eNbCol];
+	tppTableau = new T *[eLigne];
+	for (int i = 0; i < eLigne; i++) {
+		tppTableau[i] = new int[eCol];
+		for (int j = 0; j < eCol; j++) {
+			tppTableau[i][j] = 0;
+		}
+	}
 }
 
 template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol, T ** tppValeurs) {
@@ -215,7 +221,7 @@ template <typename T> CMatrice<T>::CMatrice(const CMatrice<T>& m) {
 
 template <typename T> CMatrice<T>::~CMatrice() {
 	// On d�salloue le tableau dynamique de valeur 
-	delete(tppTableau);
+	//delete(tppTableau);
 }
 
 template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw() {
@@ -264,10 +270,9 @@ template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() 
 template <typename T> CMatrice<T> * CMatrice<T>::transpose() {
 	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
 
-	for (int i = 0; i < eNbCol; i++) {
-		res->tppTableau[i] = new T[eNbLigne];
-		for (int j = 0; j < eNbLigne; j++) {
-			res->tppTableau[i][j] = tppTableau[j][i];
+	for (int i = 0; i < eNbLigne; i++) {
+		for (int j = 0; j < eNbCol; j++) {
+			res->tppTableau[j][i] = tppTableau[i][j];
 		}
 	}
 	return res;

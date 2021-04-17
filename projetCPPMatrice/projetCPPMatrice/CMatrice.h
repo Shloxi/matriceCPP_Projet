@@ -11,6 +11,7 @@ private:
 public:
 	// Constructors
 	CMatrice();
+	CMatrice(int eLigne, int eCol);
 	CMatrice(int eLigne, int eCol, T ** tppValeurs);
 	CMatrice(const CMatrice<T>& m);
 	/*
@@ -30,7 +31,7 @@ public:
 
 	CMatrice<T> * divide(int eVal) const throw();
 
-	CMatrice<T> transpose();
+	CMatrice<T> * transpose();
 
 	/*
 		Problèmes à identifier :	-) Les 2 matrices doivent être du même type

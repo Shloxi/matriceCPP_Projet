@@ -6,6 +6,7 @@
 using namespace std;
 
 
+// ###### Constructors
 
 template <typename T> CMatrice<T>::CMatrice() {
 	eNbLigne = 0;
@@ -14,12 +15,27 @@ template <typename T> CMatrice<T>::CMatrice() {
 	tppTableau = NULL;
 }
 
+template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol) {
+	eNbLigne = eLigne;
+	eNbCol = eCol;
+
+	tppTableau = new T *[eLigne];
+	for (int i = 0; i < eLigne; i++) {
+		tppTableau[i] = new int[eCol];
+		for (int j = 0; j < eCol; j++) {
+			tppTableau[i][j] = 0;
+		}
+	}
+}
+
 template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol, T ** tppValeurs) {
 	eNbLigne = eLigne;
 	eNbCol = eCol;
 	tppTableau = tppValeurs;
 }
 
+
+// ###### Methods
 template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 	// On vérifie que le nom du fichier n'est pas null
 	if (filename == NULL) {
@@ -204,7 +220,8 @@ template <typename T> CMatrice<T>::CMatrice(const CMatrice<T>& m) {
 }
 
 template <typename T> CMatrice<T>::~CMatrice() {
-
+	// On d�salloue le tableau dynamique de valeur 
+	//delete(tppTableau);
 }
 
 template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw() {
@@ -255,6 +272,18 @@ template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() 
 		for (int y = 0; y < eNbCol; ++y) {
 			// Pour chaque valeur dans la matrice, on la divise par eVal
 			res->tppTableau[i][y] /= eVal;
+		}
+	}
+	return res;
+}
+
+
+template <typename T> CMatrice<T> * CMatrice<T>::transpose() {
+	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
+
+	for (int i = 0; i < eNbLigne; i++) {
+		for (int j = 0; j < eNbCol; j++) {
+			res->tppTableau[j][i] = tppTableau[i][j];
 		}
 	}
 	return res;

@@ -49,14 +49,22 @@ int main()
 		CMatrice<int> * M1 = new CMatrice<int>(5, 5, tpptableau);
 
 		// Affichage de M1
+		cout << "Base" << endl;
 		M1->display();
 
 		// Multiplication de M1
 		CMatrice<int> * M2 = M1->multiply(5);
+		cout << "Multiplication" << endl;
 		M2->display();
+
+		// Transposée de M1
+		CMatrice<int> * MT = M1->transpose();
+		cout << "Transposée" << endl;
+		MT->display();
 
 		// Division de M1
 		CMatrice<int> * M3 = M1->divide(5);
+		cout << "Division" << endl;
 		M3->display();
 
 		// On verifie si M1 a été modifié

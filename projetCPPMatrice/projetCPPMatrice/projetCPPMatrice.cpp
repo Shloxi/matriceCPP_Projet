@@ -1,10 +1,9 @@
 // projetCPPMatrice.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
 
 #include <iostream>
-#include "Cmatrice.cpp"
 #include "CMatrice.h"
 #include "CException.h"
+#include "Cmatrice.cpp"
 
 int main(int argc, char** argv)
 {
@@ -39,12 +38,12 @@ int main(int argc, char** argv)
 			try {
 				cout << "Multiplication des matrices par " << x << endl;
 				for (int i = 0; i < tailleTableau; ++i) {
-					cout << *(tCMatrice[i]->multiply(x)) << endl;
+					cout << *(tCMatrice[i]) * x << endl;
 				}
 
 				cout << "Division des matrices par " << x << endl;
 				for (int i = 0; i < tailleTableau; ++i) {
-					cout << *(tCMatrice[i]->divide(x)) << endl;
+					cout << *(tCMatrice[i]) / x << endl;
 				}
 			}
 			catch (CException e) {

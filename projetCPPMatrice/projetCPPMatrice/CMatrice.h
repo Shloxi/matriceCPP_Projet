@@ -17,79 +17,47 @@ using namespace std;
 #define CMatriceEmptyDataTab 12
 
 
-// Constantes d'erreurs liees au calculs
-#define CMatriceNotSameSize 51
-#define CMatriceNotCompatibleSize 52
-#define CMatriceDividedBy0 53
-
-
-
 template <typename T> class CMatrice {
 
 private:
-	int eNbLigne;
-	int eNbCol;
-	T ** tppTableau;
+	int eNbLigne; // Nombre de lignes
+	int eNbCol; // Nombre de colonnes
+	T ** tppTableau; // Structure de la matrice
 
 public:
 	// Constructors
-	CMatrice();
+	CMatrice(); // Par défaut
 	CMatrice(int eLigne, int eCol);
 	CMatrice(int eLigne, int eCol, T ** tppValeurs);
-	CMatrice(const CMatrice<T>& m);
-
+	CMatrice(const CMatrice<T>& m); // Par recopie
 	/*
 	Problèmes à identifier :	-) Le fichier n'existe pas
 								-) Le fichier est vide
 	*/
 	CMatrice(const char * filename) throw();
+	~CMatrice(); // Destructeur
 
-	~CMatrice();
+	//Accesseurs
+	int getNbLigne();
+	int getNbCol();
+	T ** getMatrice();
 
 	// Methods
 
-	/* #####################
-		Problèmes généraux :	-Les opérateurs du type T doivent être surchagés obligatoirement
-	   ##################### */
-
-	CMatrice<T> * multiply(int eVal) const throw();
-
-	CMatrice<T> * divide(int eVal) const throw();
-
-	CMatrice<T> * transpose();
-
-	/*
-		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
-								    -) Les matrices doivent être de même taille
-	*/
-	CMatrice<T> * addMat(CMatrice<T> CMat) const throw();
-
-	/*
-		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
-									-) Les matrices doivent être de même taille
-	*/
-	CMatrice<T> * subMat(CMatrice<T> CMat) const throw();
-
-	/*
-		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
-									-) Le nombre de colonnes de this doit être égal au nombre
-										de ligne de CMat
-	*/
-	CMatrice<T> * multiplyMat(CMatrice<T> CMat) const throw();
-
+	// Utilisé par la surcharge <<
 	ostream& display(ostream & os) const throw();
 
+	// Surcharge par int
 	CMatrice<T> & operator*(int const c);
-
 	CMatrice<T> & operator/(int const c);
 
+	// Surcharge par CMatrice
 	CMatrice<T> & operator+(CMatrice<T> const M);
-
 	CMatrice<T> & operator-(CMatrice<T> const M);
-
 	CMatrice<T> & operator*(CMatrice<T> const M);
 };
 
+// Surcharge pour afficher
 template <typename T> ostream& operator<<(ostream& os, CMatrice<T> const M);
 
 #endif // !CMatrice_h

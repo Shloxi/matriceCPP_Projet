@@ -62,6 +62,8 @@ public:
 	CMatrice<T> & operator+(CMatrice<T> const M);
 
 	CMatrice<T> & operator-(CMatrice<T> const M);
+
+	CMatrice<T> & operator*(CMatrice<T> const M);
 };
 
 template <typename T> ostream& operator<<(ostream& os, CMatrice<T> const M);

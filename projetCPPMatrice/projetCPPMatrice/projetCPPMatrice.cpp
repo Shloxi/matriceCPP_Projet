@@ -58,6 +58,11 @@ int main()
 		cout << "Multiplication" << endl;
 		cout << *M2 << endl;
 
+		CMatrice<int> * MA = new CMatrice<int>();
+		*MA = (*M1)*(*M1);
+		cout << "M1 * M1" << endl;
+		cout << *MA << endl;
+
 		// Transposée de M1
 		CMatrice<int> * MT = M1->transpose();
 		cout << "Transposee" << endl;

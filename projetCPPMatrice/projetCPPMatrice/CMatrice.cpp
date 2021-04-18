@@ -6,7 +6,11 @@
 using namespace std;
 
 
-// ###### Constructors
+/*
+##################
+  CONSTRUCTEURS
+##################
+*/
 
 template <typename T> CMatrice<T>::CMatrice() {
 	eNbLigne = 0;
@@ -223,6 +227,13 @@ template <typename T> CMatrice<T>::~CMatrice() {
 	//delete(tppTableau);
 }
 
+
+/*
+##################
+	METHODES
+##################
+*/
+
 template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw() {
 	// On verifie que les attributs sont initalises
 	if (eNbLigne == 0 || eNbCol == 0) {
@@ -244,36 +255,37 @@ template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw(
 	return res;
 }
 
-template <typename T> CMatrice<T> & CMatrice<T>::operator*(int const c) {
-	CMatrice<T> * res = this->multiply(c);
-	return *res;
+template <typename T> CMatrice<T> * CMatrice<T>::multiplyMat(CMatrice<T> CMat) const throw() {
+	if (eNbLigne == 0 || eNbCol == 0) {
+		throw CException();
+	}
+	if (tppTableau == NULL) {
+		throw CException();
+	}
+	if (CMat.eNbLigne == 0 || CMat.eNbCol == 0) {
+		throw CException();
+	}
+	if (CMat.tppTableau == NULL) {
+		throw CException();
+	}
+		
+	if (CMat.eNbLigne != eNbCol) {
+		throw CException();
+	}
+
+	CMatrice<T> * res = new CMatrice<T>(eNbLigne, CMat.eNbCol);
+
+	for (int i = 0; i < eNbLigne; i++) {
+		for (int j = 0; j < CMat.eNbCol; j++) {
+			for (int x = 0; x < eNbCol; x++) {
+				res->tppTableau[i][j] += tppTableau[i][x] * CMat.tppTableau[x][j];
+			}
+		}
+	}
+	return res;
 }
 
-template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M)
-{
-	CMatrice<T> * res = M.multiply(c);
-	return *res;
-}
 
-template <typename T> CMatrice<T> & CMatrice<T>::operator/(int const c) {
-	CMatrice<T> * res = this->divide(c);
-	return *res;
-}
-
-template <typename T> CMatrice<T> & CMatrice<T>::operator+(CMatrice<T> const M) {
-	CMatrice<T> * res = this->addMat(M);
-	return *res;
-}
-
-template <typename T> CMatrice<T> & CMatrice<T>::operator-(CMatrice<T> const M) {
-	CMatrice<T> * res = this->subMat(M);
-	return *res;
-}
-
-template <typename T> ostream & operator<<(ostream& os, CMatrice<T> const M) {
-	M.display(os);
-	return os;
-}
 
 template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() {
 	// On verifie que les attributs sont initalises
@@ -366,7 +378,7 @@ template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const thr
 	return res;
 }
 
-template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw() {
+	template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw() {
 	if (eNbLigne == 0 || eNbCol == 0) {
 		throw CException();
 	}
@@ -382,4 +394,47 @@ template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw()
 	os << endl;
 
 	return os;
+}
+
+/*
+##################
+    SURCHARGES 
+##################
+*/
+
+
+template <typename T> CMatrice<T> & CMatrice<T>::operator*(int const c) {
+	CMatrice<T> * res = this->multiply(c);
+	return *res;
+}
+
+template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M)
+{
+	CMatrice<T> * res = M.multiply(c);
+	return *res;
+}
+
+template <typename T> CMatrice<T> & CMatrice<T>::operator/(int const c) {
+	CMatrice<T> * res = this->divide(c);
+	return *res;
+}
+
+template <typename T> ostream & operator<<(ostream& os, CMatrice<T> const M) {
+	M.display(os);
+	return os;
+}
+
+template <typename T> CMatrice<T> & CMatrice<T>::operator*(CMatrice<T> const M) {
+	CMatrice<T> * res = this->multiplyMat(M);
+	return *res;
+}
+
+template <typename T> CMatrice<T> & CMatrice<T>::operator+(CMatrice<T> const M) {
+	CMatrice<T> * res = this->addMat(M);
+	return *res;
+}
+
+template <typename T> CMatrice<T> & CMatrice<T>::operator-(CMatrice<T> const M) {
+	CMatrice<T> * res = this->subMat(M);
+	return *res;
 }

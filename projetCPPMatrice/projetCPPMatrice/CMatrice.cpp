@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "CMatrice.h"
+#include "CMatriceOperation.cpp"
 #include "CException.h"
 using namespace std;
 
@@ -37,8 +38,6 @@ template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol, T ** tppValeur
 	tppTableau = tppValeurs;
 }
 
-
-// ###### Methods
 template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 	// On vérifie que le nom du fichier n'est pas null
 	if (filename == NULL) {
@@ -223,137 +222,7 @@ template <typename T> CMatrice<T>::~CMatrice() {
 ##################
 */
 
-template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw() {
-	// On verifie que les attributs sont initalises
-	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException(CMatriceNullAttributes);
-	}
-	if (tppTableau == NULL) {
-		throw CException();
-	}
-
-	// On alloue notre matrice de r�sultat
-	CMatrice<T> * res = new CMatrice<T>(*this);
-
-	for (int i = 0; i < eNbLigne; ++i) {
-		for (int y = 0; y < eNbCol; ++y) {
-			// Pour chaque valeur dans la matrice, on la multiplie par eVal
-			res->tppTableau[i][y] *= eVal;
-		}
-	}
-	return res;
-}
-
-template <typename T> CMatrice<T> * CMatrice<T>::multiplyMat(CMatrice<T> CMat) const throw() {
-	if (eNbLigne == 0 || eNbCol == 0 || CMat.eNbLigne == 0 || CMat.eNbCol == 0) {
-		throw CException(CMatriceNullAttributes);
-	}
-	if (tppTableau == NULL || CMat.tppTableau == NULL) {
-		throw CException(CMatriceEmptyDataTab);
-	}
-		
-	if (CMat.eNbLigne != eNbCol) {
-		throw CException(CMatriceNotCompatibleSize);
-	}
-
-	CMatrice<T> * res = new CMatrice<T>(eNbLigne, CMat.eNbCol);
-
-	for (int i = 0; i < eNbLigne; i++) {
-		for (int j = 0; j < CMat.eNbCol; j++) {
-			for (int x = 0; x < eNbCol; x++) {
-				res->tppTableau[i][j] += tppTableau[i][x] * CMat.tppTableau[x][j];
-			}
-		}
-	}
-	return res;
-}
-
-
-
-template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() {
-	// On verifie que les attributs sont initalises
-	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException(CMatriceNullAttributes);
-	}
-	if (tppTableau == NULL) {
-		throw CException(CMatriceEmptyDataTab);
-	}
-	if (eVal == 0) {
-		throw CException(CMatriceDividedBy0);
-	}
-
-	// On alloue notre matrice de resultat
-	CMatrice<T> * res = new CMatrice<T>(*this);
-
-	for (int i = 0; i < eNbLigne; ++i) {
-		for (int y = 0; y < eNbCol; ++y) {
-			// Pour chaque valeur dans la matrice, on la divise par eVal
-			res->tppTableau[i][y] /= eVal;
-		}
-	}
-	return res;
-}
-
-
-template <typename T> CMatrice<T> * CMatrice<T>::transpose() {
-	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
-
-	for (int i = 0; i < eNbLigne; i++) {
-		for (int j = 0; j < eNbCol; j++) {
-			res->tppTableau[j][i] = tppTableau[i][j];
-		}
-	}
-	return res;
-}
-
-template <typename T> CMatrice<T> * CMatrice<T>::addMat(CMatrice<T> M) const throw() {
-	if (eNbLigne == 0 || eNbCol == 0 || M.eNbLigne == 0 || M.eNbCol == 0) {
-		throw CException(CMatriceNullAttributes);
-	}
-	if (tppTableau == NULL || M.tppTableau == NULL) {
-		throw CException(CMatriceEmptyDataTab);
-	}
-
-	if (eNbLigne != M.eNbLigne) {
-		throw CException(CMatriceNotSameSize);
-	}
-	if (eNbCol != M.eNbCol) {
-		throw CException(CMatriceNotSameSize);
-	}
-	CMatrice<T> * res = new CMatrice<T>(eNbLigne, eNbCol);
-	for (int i = 0; i < eNbLigne; ++i) {
-		for (int y = 0; y < eNbCol; ++y) {
-			res->tppTableau[i][y] = tppTableau[i][y] + M.tppTableau[i][y];
-		}
-	}
-
-	return res;
-}
-
-template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const throw() {
-	if (eNbLigne == 0 || eNbCol == 0 || M.eNbLigne == 0 || M.eNbCol == 0) {
-		throw CException(CMatriceNullAttributes);
-	}
-	if (tppTableau == NULL || M.tppTableau == NULL) {
-		throw CException(CMatriceEmptyDataTab);
-	}
-	if (eNbLigne != M.eNbLigne) {
-		throw CException(CMatriceNotSameSize);
-	}
-	if (eNbCol != M.eNbCol) {
-		throw CException(CMatriceNotSameSize);
-	}
-	CMatrice<T> * res = new CMatrice<T>(eNbLigne, eNbCol);
-	for (int i = 0; i < eNbLigne; ++i) {
-		for (int y = 0; y < eNbCol; ++y) {
-			res->tppTableau[i][y] = tppTableau[i][y] - M.tppTableau[i][y];
-		}
-	}
-
-	return res;
-}
-
-	template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw() {
+template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw() {
 	if (eNbLigne == 0 || eNbCol == 0) {
 		throw CException(CMatriceNullAttributes);
 	}
@@ -371,23 +240,40 @@ template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const thr
 
 /*
 ##################
-    SURCHARGES 
+	ACCESSEURS
+##################
+*/
+template <typename T> int CMatrice<T>::getNbLigne() {
+	return eNbLigne;
+}
+
+template <typename T> int CMatrice<T>::getNbCol() {
+	return eNbCol;
+}
+
+template <typename T> T ** CMatrice<T>::getMatrice() {
+	return tppTableau;
+}
+
+/*
+##################
+	SURCHARGES
 ##################
 */
 
 template <typename T> CMatrice<T> & CMatrice<T>::operator*(int const c) {
-	CMatrice<T> * res = this->multiply(c);
+	CMatrice<T> * res = multiply(*this, c);
 	return *res;
 }
 
 template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M)
 {
-	CMatrice<T> * res = M.multiply(c);
+	CMatrice<T> * res = multiply(*M, c);
 	return *res;
 }
 
 template <typename T> CMatrice<T> & CMatrice<T>::operator/(int const c) {
-	CMatrice<T> * res = this->divide(c);
+	CMatrice<T> * res = divide(*this, c);
 	return *res;
 }
 
@@ -397,16 +283,16 @@ template <typename T> ostream & operator<<(ostream& os, CMatrice<T> const M) {
 }
 
 template <typename T> CMatrice<T> & CMatrice<T>::operator*(CMatrice<T> const M) {
-	CMatrice<T> * res = this->multiplyMat(M);
+	CMatrice<T> * res = multiplyMat(*this, M);
 	return *res;
 }
 
 template <typename T> CMatrice<T> & CMatrice<T>::operator+(CMatrice<T> const M) {
-	CMatrice<T> * res = this->addMat(M);
+	CMatrice<T> * res = addMat(*this, M);
 	return *res;
 }
 
 template <typename T> CMatrice<T> & CMatrice<T>::operator-(CMatrice<T> const M) {
-	CMatrice<T> * res = this->subMat(M);
+	CMatrice<T> * res = subMat(*this, M);
 	return *res;
 }

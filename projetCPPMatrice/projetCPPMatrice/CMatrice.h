@@ -1,5 +1,6 @@
 ﻿#ifndef CMatrice_h
 #define CMatrice_h
+using namespace std;
 
 template <typename T> class CMatrice {
 
@@ -52,12 +53,17 @@ public:
 	*/
 	CMatrice<T> multiplyMat(CMatrice<T> CMat);
 
-	void display() const throw();
+	ostream& display(ostream & os) const throw();
+
+	void pouet() const throw();
 
 	CMatrice<T> & operator*(int const c);
 };
 
+template <typename T> ostream& operator<<(ostream& os, CMatrice<T> M);
+
 template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M);
+
 
 
 

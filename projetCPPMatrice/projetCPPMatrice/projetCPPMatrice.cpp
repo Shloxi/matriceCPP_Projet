@@ -48,43 +48,47 @@ int main()
 	try {
 		CMatrice<int> * M1 = new CMatrice<int>(5, 5, tpptableau);
 
+
 		// Affichage de M1
 		cout << "Base" << endl;
-		M1->display();
+		cout << *M1 << endl;
 
 		// Multiplication de M1
 		CMatrice<int> * M2 = M1->multiply(5);
 		cout << "Multiplication" << endl;
-		M2->display();
+		cout << *M2 << endl;
 
 		// Transposée de M1
 		CMatrice<int> * MT = M1->transpose();
-		cout << "Transposée" << endl;
-		MT->display();
+		cout << "Transposee" << endl;
+		cout << *MT << endl;
 
 		// Division de M1
 		CMatrice<int> * M3 = M1->divide(5);
 		cout << "Division" << endl;
-		M3->display();
+		cout << *M3 << endl;
 
 		// On verifie si M1 a été modifié
-		M1->display();
+		cout << "M1 non changee ?" << endl;
+		cout << *M1 << endl;
 
 		// On test la construction de matrice par fichier.
 
-		// CMatrice<float> * M4 = new CMatrice<float>("testMatriceFalse.txt");
+		//CMatrice<float> * M4 = new CMatrice<float>("testMatriceFalse.txt");
 		CMatrice<float> * M5 = new CMatrice<float>("testMatriceTrue.txt");
-		M5->display();
+		cout << "Matrice via fichier" << endl;
+		//M5->pouet();
+		cout << *M5 << endl;
 
 		// Test surcharge
-		CMatrice<int> * MTest;
-		MTest = (*M1) *5;
-		MTest->display();
+		CMatrice<int> * MTest = new CMatrice<int>();
+		*MTest = *M1 * 5;
+		cout << "Surcharge operateur *" << endl;
+		cout << *MTest << endl;
 
-		CMatrice<int> * MTest2;
-		MTest2 = 5 * (*M1);
-		MTest2->display();
-
+		CMatrice<int> * MTest2 = new CMatrice<int>();
+		*MTest2 = 5 * (*M1);
+		cout << *MTest2 << endl;
 	}
 	catch (CException e) {
 		std::cerr << e.ExceptGetIndexError();

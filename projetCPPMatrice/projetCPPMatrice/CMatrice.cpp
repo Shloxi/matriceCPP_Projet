@@ -317,7 +317,7 @@ template <typename T> CMatrice<T> * CMatrice<T>::addMat(CMatrice<T> M) const thr
 	if (eNbCol != M.eNbCol) {
 		throw CException(CMatriceNotSameSize);
 	}
-	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
+	CMatrice<T> * res = new CMatrice<T>(eNbLigne, eNbCol);
 	for (int i = 0; i < eNbLigne; ++i) {
 		for (int y = 0; y < eNbCol; ++y) {
 			res->tppTableau[i][y] = tppTableau[i][y] + M.tppTableau[i][y];
@@ -340,7 +340,7 @@ template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const thr
 	if (eNbCol != M.eNbCol) {
 		throw CException(CMatriceNotSameSize);
 	}
-	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
+	CMatrice<T> * res = new CMatrice<T>(eNbLigne, eNbCol);
 	for (int i = 0; i < eNbLigne; ++i) {
 		for (int y = 0; y < eNbCol; ++y) {
 			res->tppTableau[i][y] = tppTableau[i][y] - M.tppTableau[i][y];
@@ -363,8 +363,6 @@ template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const thr
 		}
 		os << endl;
 	}
-	os << endl;
-
 	return os;
 }
 

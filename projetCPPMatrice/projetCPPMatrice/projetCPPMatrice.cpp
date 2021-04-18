@@ -77,8 +77,9 @@ int main()
 		//CMatrice<float> * M4 = new CMatrice<float>("testMatriceFalse.txt");
 		CMatrice<float> * M5 = new CMatrice<float>("testMatriceTrue.txt");
 		cout << "Matrice via fichier" << endl;
-		//M5->pouet();
 		cout << *M5 << endl;
+		//M5->pouet();
+		
 
 		// Test surcharge
 		CMatrice<int> * MTest = new CMatrice<int>();
@@ -89,6 +90,8 @@ int main()
 		CMatrice<int> * MTest2 = new CMatrice<int>();
 		*MTest2 = 5 * (*M1);
 		cout << *MTest2 << endl;
+
+		
 	}
 	catch (CException e) {
 		std::cerr << e.ExceptGetIndexError();

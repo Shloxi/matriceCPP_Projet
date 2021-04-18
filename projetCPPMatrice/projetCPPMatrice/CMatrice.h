@@ -58,13 +58,12 @@ public:
 	void pouet() const throw();
 
 	CMatrice<T> & operator*(int const c);
+
+	CMatrice<T> & operator/(int const c);
 };
 
-template <typename T> ostream& operator<<(ostream& os, CMatrice<T> M);
+template <typename T> ostream& operator<<(ostream& os, CMatrice<T> const M);
 
 template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M);
-
-
-
 
 #endif // !CMatrice_h

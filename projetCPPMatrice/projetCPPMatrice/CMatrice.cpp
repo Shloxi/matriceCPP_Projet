@@ -71,8 +71,7 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 		++i;
 	}
 	if (i != 12) {
-		std::cout << "Wrong syntaxe" << std::endl;
-		throw CException();
+		throw CException(CMatriceWrongTypeFile);
 	}
 
 	// Recuperation du type de la Matrice
@@ -85,14 +84,12 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 
 	// Verification du type de la Matrice
 	if (iTailleArg != 5) {
-		std::cout << "Wrong Type 1" << std::endl;
-		throw CException();
+		throw CException(CMatriceWrongTypeFile);
 	}
 	else {
 		for (int cpt = 0; cpt < 5; cpt++) {
 			if (sArg[cpt] != verifType[cpt]) {
-				std::cout << "Wrong Type 2" << std::endl;
-				throw CException();
+				throw CException(CMatriceWrongTypeFile);
 			}
 		}
 	}
@@ -105,8 +102,7 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 		++i;
 	}
 	if (i != 9) {
-		std::cout << "Wrong syntaxe" << std::endl;
-		throw CException();
+		throw CException(CMatriceWrongSyntax);
 	}
 
 	// Recuperation du nombre de lignes
@@ -118,8 +114,7 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 	sArg[i - 9] = '\0';
 	iTailleArg = i - 9;
 	if (iTailleArg == 0) {
-		std::cout << "Wrong Line" << endl;
-		throw CException();
+		throw CException(CMatriceWrongLine);
 	}
 	eNbLigne = atoi(sArg);
 
@@ -131,8 +126,7 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 		++i;
 	}
 	if (i != 11) {
-		std::cout << "Wrong syntaxe" << std::endl;
-		throw CException();
+		throw CException(CMatriceWrongSyntax);
 	}
 
 	// Recuperation du nombre de colonnes
@@ -144,19 +138,16 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 	sArg[i - 11] = '\0';
 	iTailleArg = i - 11;
 	if (iTailleArg == 0) {
-		std::cout << "Wrong Col" << endl;
-		throw CException();
+		throw CException(CMatriceWrongCol);
 	}
 	eNbCol = atoi(sArg);
 
 	// Verification du nombre de ligne et colonnes
 	if (eNbLigne == 0) {
-		std::cout << "Wrong NbLines" << endl;
-		throw CException();
+		throw CException(CMatriceWrongLine);
 	}
 	if (eNbCol == 0) {
-		std::cout << "Wrong NbCol" << endl;
-		throw CException();
+		throw CException(CMatriceWrongCol);
 	}
 
 	// Allocation en memoire de la structure de la matrice
@@ -174,8 +165,7 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 		++i;
 	}
 	if (i != 9) {
-		std::cout << "Wrong syntaxe" << std::endl;
-		throw CException();
+		throw CException(CMatriceWrongSyntax);
 	}
 
 	//Recupération de la matrice
@@ -184,8 +174,7 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 		monFlux >> sOutput;
 		// Si la donnee recuperee n'est pas un nombre
 		if (sOutput[0] != '0' && atoi(sOutput) == 0) {
-			std::cout << "Erreur donnee matrice" << std::endl;
-			throw CException();
+			throw CException(CMatriceDataError);
 		}
 		tpptableau[i / eNbCol][i%eNbCol] = (float)atoi(sOutput);
 		++i;
@@ -200,8 +189,7 @@ template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 		}
 		free(tpptableau);
 		tpptableau = nullptr;
-		std::cout << "Erreur Matrice" << std::endl;
-		throw CException();
+		throw CException(CMatriceGlobalError);
 	}
 	tppTableau = tpptableau;
 }
@@ -238,7 +226,7 @@ template <typename T> CMatrice<T>::~CMatrice() {
 template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw() {
 	// On verifie que les attributs sont initalises
 	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException();
+		throw CException(CMatriceNullAttributes);
 	}
 	if (tppTableau == NULL) {
 		throw CException();
@@ -257,21 +245,15 @@ template <typename T> CMatrice<T> * CMatrice<T>::multiply(int eVal) const throw(
 }
 
 template <typename T> CMatrice<T> * CMatrice<T>::multiplyMat(CMatrice<T> CMat) const throw() {
-	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException();
+	if (eNbLigne == 0 || eNbCol == 0 || CMat.eNbLigne == 0 || CMat.eNbCol == 0) {
+		throw CException(CMatriceNullAttributes);
 	}
-	if (tppTableau == NULL) {
-		throw CException();
-	}
-	if (CMat.eNbLigne == 0 || CMat.eNbCol == 0) {
-		throw CException();
-	}
-	if (CMat.tppTableau == NULL) {
-		throw CException();
+	if (tppTableau == NULL || CMat.tppTableau == NULL) {
+		throw CException(CMatriceEmptyDataTab);
 	}
 		
 	if (CMat.eNbLigne != eNbCol) {
-		throw CException();
+		throw CException(CMatriceNotCompatibleSize);
 	}
 
 	CMatrice<T> * res = new CMatrice<T>(eNbLigne, CMat.eNbCol);
@@ -291,10 +273,10 @@ template <typename T> CMatrice<T> * CMatrice<T>::multiplyMat(CMatrice<T> CMat) c
 template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() {
 	// On verifie que les attributs sont initalises
 	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException();
+		throw CException(CMatriceNullAttributes);
 	}
 	if (tppTableau == NULL) {
-		throw CException();
+		throw CException(CMatriceEmptyDataTab);
 	}
 
 	// On alloue notre matrice de resultat
@@ -322,23 +304,18 @@ template <typename T> CMatrice<T> * CMatrice<T>::transpose() {
 }
 
 template <typename T> CMatrice<T> * CMatrice<T>::addMat(CMatrice<T> M) const throw() {
-	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException();
+	if (eNbLigne == 0 || eNbCol == 0 || M.eNbLigne == 0 || M.eNbCol == 0) {
+		throw CException(CMatriceNullAttributes);
 	}
-	if (tppTableau == NULL) {
-		throw CException();
+	if (tppTableau == NULL || M.tppTableau == NULL) {
+		throw CException(CMatriceEmptyDataTab);
 	}
-	if (M.eNbLigne == 0 || M.eNbCol == 0) {
-		throw CException();
-	}
-	if (M.tppTableau == NULL) {
-		throw CException();
-	}
+
 	if (eNbLigne != M.eNbLigne) {
-		throw CException();
+		throw CException(CMatriceNotSameSize);
 	}
 	if (eNbCol != M.eNbCol) {
-		throw CException();
+		throw CException(CMatriceNotSameSize);
 	}
 	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
 	for (int i = 0; i < eNbLigne; ++i) {
@@ -351,23 +328,17 @@ template <typename T> CMatrice<T> * CMatrice<T>::addMat(CMatrice<T> M) const thr
 }
 
 template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const throw() {
-	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException();
+	if (eNbLigne == 0 || eNbCol == 0 || M.eNbLigne == 0 || M.eNbCol == 0) {
+		throw CException(CMatriceNullAttributes);
 	}
-	if (tppTableau == NULL) {
-		throw CException();
-	}
-	if (M.eNbLigne == 0 || M.eNbCol == 0) {
-		throw CException();
-	}
-	if (M.tppTableau == NULL) {
-		throw CException();
+	if (tppTableau == NULL || M.tppTableau == NULL) {
+		throw CException(CMatriceEmptyDataTab);
 	}
 	if (eNbLigne != M.eNbLigne) {
-		throw CException();
+		throw CException(CMatriceNotSameSize);
 	}
 	if (eNbCol != M.eNbCol) {
-		throw CException();
+		throw CException(CMatriceNotSameSize);
 	}
 	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
 	for (int i = 0; i < eNbLigne; ++i) {
@@ -381,10 +352,10 @@ template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const thr
 
 	template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw() {
 	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException();
+		throw CException(CMatriceNullAttributes);
 	}
 	if (tppTableau == NULL) {
-		throw CException();
+		throw CException(CMatriceEmptyDataTab);
 	}
 	for (int i = 0; i < eNbLigne; ++i) {
 		for (int y = 0; y < eNbCol; ++y) {
@@ -402,7 +373,6 @@ template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const thr
     SURCHARGES 
 ##################
 */
-
 
 template <typename T> CMatrice<T> & CMatrice<T>::operator*(int const c) {
 	CMatrice<T> * res = this->multiply(c);

@@ -208,7 +208,7 @@ template <typename T> CMatrice<T>::CMatrice(const CMatrice<T>& m) {
 
 	// On alloue un tableau de pointeurs de pointeurs pour la matrice
 	// et on attribue les valeurs correspondantes
-	int ** tppvaleurs;
+	T ** tppvaleurs;
 	tppvaleurs = new T *[eNbLigne];
 	for (int i = 0; i < eNbLigne; ++i) {
 		tppvaleurs[i] = new T[eNbCol];

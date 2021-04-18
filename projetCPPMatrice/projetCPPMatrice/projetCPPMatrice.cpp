@@ -91,7 +91,10 @@ int main()
 		*MTest2 = 5 * (*M1);
 		cout << *MTest2 << endl;
 
-		
+		CMatrice<int> * MTest3 = new CMatrice<int>();
+		*MTest3 = *M1 / 5;
+		cout << "Surcharge operateur /" << endl;
+		cout << *MTest3 << endl;
 	}
 	catch (CException e) {
 		std::cerr << e.ExceptGetIndexError();

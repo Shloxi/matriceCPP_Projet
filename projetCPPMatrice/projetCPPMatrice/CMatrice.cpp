@@ -11,7 +11,6 @@ using namespace std;
 template <typename T> CMatrice<T>::CMatrice() {
 	eNbLigne = 0;
 	eNbCol = 0;
-
 	tppTableau = NULL;
 }
 
@@ -256,7 +255,12 @@ template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M)
 	return *res;
 }
 
-template <typename T> ostream & operator<<(ostream& os, CMatrice<T> M) {
+template <typename T> CMatrice<T> & CMatrice<T>::operator/(int const c) {
+	CMatrice<T> * res = this->divide(c);
+	return *res;
+}
+
+template <typename T> ostream & operator<<(ostream& os, CMatrice<T> const M) {
 	M.display(os);
 	return os;
 }

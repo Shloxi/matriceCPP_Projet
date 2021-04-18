@@ -256,6 +256,11 @@ template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M)
 	return *res;
 }
 
+template <typename T> ostream & operator<<(ostream& os, CMatrice<T> M) {
+	M.display(os);
+	return os;
+}
+
 template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() {
 	// On verifie que les attributs sont initalises
 	if (eNbLigne == 0 || eNbCol == 0) {
@@ -289,7 +294,25 @@ template <typename T> CMatrice<T> * CMatrice<T>::transpose() {
 	return res;
 }
 
-template <typename T> void CMatrice<T>::display() const throw() {
+template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw() {
+	if (eNbLigne == 0 || eNbCol == 0) {
+		throw CException();
+	}
+	if (tppTableau == NULL) {
+		throw CException();
+	}
+	for (int i = 0; i < eNbLigne; ++i) {
+		for (int y = 0; y < eNbCol; ++y) {
+			os << tppTableau[i][y] << " ";
+		}
+		os << endl;
+	}
+	os << endl;
+
+	return os;
+}
+
+template <typename T> void CMatrice<T>::pouet() const throw() {
 	if (eNbLigne == 0 || eNbCol == 0) {
 		throw CException();
 	}

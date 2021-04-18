@@ -77,12 +77,12 @@ int main()
 		M5->display();
 
 		// Test surcharge
-		CMatrice<int> * MTest;
-		MTest = (*M1) *5;
+		CMatrice<int> * MTest = new CMatrice<int>();
+		*MTest = *M1 *5;
 		MTest->display();
 
-		CMatrice<int> * MTest2;
-		MTest2 = 5 * (*M1);
+		CMatrice<int> * MTest2 = new CMatrice<int>();
+		*MTest2 = 5 * (*M1);
 		MTest2->display();
 
 	}

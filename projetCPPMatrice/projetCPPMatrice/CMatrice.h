@@ -2,6 +2,16 @@
 #define CMatrice_h
 using namespace std;
 
+// Constantes d'erreurs pour la creation de matrice via fichier
+#define CMatriceEmptyFile 1
+#define CMatriceFileNotExist 2
+
+// Constantes d'erreurs liees au calculs
+#define CMatriceNotSameSize 11
+#define CMatriceNotCompatibleSize 12
+
+
+
 template <typename T> class CMatrice {
 
 private:
@@ -15,11 +25,13 @@ public:
 	CMatrice(int eLigne, int eCol);
 	CMatrice(int eLigne, int eCol, T ** tppValeurs);
 	CMatrice(const CMatrice<T>& m);
-	CMatrice(const char * filename) throw();
+
 	/*
-		Problèmes à identifier :	-) Le fichier n'existe pas
-									-) Le fichier est vide
+	Problèmes à identifier :	-) Le fichier n'existe pas
+								-) Le fichier est vide
 	*/
+	CMatrice(const char * filename) throw();
+
 	~CMatrice();
 
 	// Methods
@@ -36,7 +48,7 @@ public:
 
 	/*
 		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
-								-) Les matrices doivent être de même taille
+								    -) Les matrices doivent être de même taille
 	*/
 	CMatrice<T> addMat(CMatrice<T> CMat);
 

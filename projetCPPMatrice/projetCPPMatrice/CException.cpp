@@ -6,6 +6,10 @@ CException::CException() {
 	eIndexError = 0;
 }
 
+CException::CException(int eError) {
+	eIndexError = eError;
+}
+
 // Methods
 void CException::ExceptModifErrorType(int eError) {
 	eIndexError = eError;

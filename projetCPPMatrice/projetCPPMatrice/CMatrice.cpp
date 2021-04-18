@@ -42,13 +42,14 @@ template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol, T ** tppValeur
 template <typename T> CMatrice<T>::CMatrice(const char * filename) throw() {
 	// On vérifie que le nom du fichier n'est pas null
 	if (filename == NULL) {
-		throw CException();
+
+		throw CException(CMatriceFileNotExist);
 	}
 
 	// On vérifie que le flux crée est fonctionnelle
 	ifstream monFlux(filename);
 	if (!monFlux) {
-		throw CException();
+		throw CException(CMatriceEmptyFile);
 	}
 
 	// sOutput : Variable de récupération des caractères du fichier
@@ -224,7 +225,7 @@ template <typename T> CMatrice<T>::CMatrice(const CMatrice<T>& m) {
 
 template <typename T> CMatrice<T>::~CMatrice() {
 	// On d�salloue le tableau dynamique de valeur 
-	//delete(tppTableau);
+	delete(tppTableau);
 }
 
 

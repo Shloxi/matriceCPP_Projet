@@ -9,6 +9,7 @@ private:
 public:
 	// Constructors
 	CException();
+	CException(int eError);
 	// Methods 
 	void ExceptModifErrorType(int eErrorType);
 	int ExceptGetIndexError();

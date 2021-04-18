@@ -38,32 +38,32 @@ public:
 		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
 								-) Les matrices doivent être de même taille
 	*/
-	CMatrice<T> addMat(CMatrice<T> CMat);
+	CMatrice<T> * addMat(CMatrice<T> CMat) const throw();
 
 	/*
 		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
 									-) Les matrices doivent être de même taille
 	*/
-	CMatrice<T> subMat(CMatrice<T> CMat);
+	CMatrice<T> * subMat(CMatrice<T> CMat) const throw();
 
 	/*
 		Problèmes à identifier :	-) Les 2 matrices doivent être du même type
 									-) Le nombre de colonnes de this doit être égal au nombre
 										de ligne de CMat
 	*/
-	CMatrice<T> multiplyMat(CMatrice<T> CMat);
+	CMatrice<T> * multiplyMat(CMatrice<T> CMat) const throw();
 
 	ostream& display(ostream & os) const throw();
-
-	void pouet() const throw();
 
 	CMatrice<T> & operator*(int const c);
 
 	CMatrice<T> & operator/(int const c);
+
+	CMatrice<T> & operator+(CMatrice<T> const M);
+
+	CMatrice<T> & operator-(CMatrice<T> const M);
 };
 
 template <typename T> ostream& operator<<(ostream& os, CMatrice<T> const M);
-
-template <typename T> CMatrice<T> & operator*(int const c, CMatrice<T> const M);
 
 #endif // !CMatrice_h

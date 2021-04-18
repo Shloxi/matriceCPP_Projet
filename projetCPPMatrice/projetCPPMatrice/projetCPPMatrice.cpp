@@ -95,6 +95,22 @@ int main()
 		*MTest3 = *M1 / 5;
 		cout << "Surcharge operateur /" << endl;
 		cout << *MTest3 << endl;
+
+		//Addition de matrice
+		CMatrice<float> * MAdd = new CMatrice<float>();
+		*MAdd = *M5 + *M5;
+		cout << "M1 + M2" << endl;
+		cout << *MAdd << endl;
+
+		//Soustraction de matrice
+		CMatrice<int> * MSub = new CMatrice<int>();
+		*MSub = *M1 - *M2;
+		cout << "M1 - M2" << endl;
+		cout << *MSub << endl;
+		if (typeid(int) == typeid(float)) {
+			cout << "zebi" << endl;
+		}
+		
 	}
 	catch (CException e) {
 		std::cerr << e.ExceptGetIndexError();

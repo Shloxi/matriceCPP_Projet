@@ -20,7 +20,7 @@ template <typename T> CMatrice<T>::CMatrice(int eLigne, int eCol) {
 
 	tppTableau = new T *[eLigne];
 	for (int i = 0; i < eLigne; i++) {
-		tppTableau[i] = new int[eCol];
+		tppTableau[i] = new T[eCol];
 		for (int j = 0; j < eCol; j++) {
 			tppTableau[i][j] = 0;
 		}
@@ -260,6 +260,16 @@ template <typename T> CMatrice<T> & CMatrice<T>::operator/(int const c) {
 	return *res;
 }
 
+template <typename T> CMatrice<T> & CMatrice<T>::operator+(CMatrice<T> const M) {
+	CMatrice<T> * res = this->addMat(M);
+	return *res;
+}
+
+template <typename T> CMatrice<T> & CMatrice<T>::operator-(CMatrice<T> const M) {
+	CMatrice<T> * res = this->subMat(M);
+	return *res;
+}
+
 template <typename T> ostream & operator<<(ostream& os, CMatrice<T> const M) {
 	M.display(os);
 	return os;
@@ -298,6 +308,64 @@ template <typename T> CMatrice<T> * CMatrice<T>::transpose() {
 	return res;
 }
 
+template <typename T> CMatrice<T> * CMatrice<T>::addMat(CMatrice<T> M) const throw() {
+	if (eNbLigne == 0 || eNbCol == 0) {
+		throw CException();
+	}
+	if (tppTableau == NULL) {
+		throw CException();
+	}
+	if (M.eNbLigne == 0 || M.eNbCol == 0) {
+		throw CException();
+	}
+	if (M.tppTableau == NULL) {
+		throw CException();
+	}
+	if (eNbLigne != M.eNbLigne) {
+		throw CException();
+	}
+	if (eNbCol != M.eNbCol) {
+		throw CException();
+	}
+	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
+	for (int i = 0; i < eNbLigne; ++i) {
+		for (int y = 0; y < eNbCol; ++y) {
+			res->tppTableau[i][y] = tppTableau[i][y] + M.tppTableau[i][y];
+		}
+	}
+
+	return res;
+}
+
+template <typename T> CMatrice<T> * CMatrice<T>::subMat(CMatrice<T> M) const throw() {
+	if (eNbLigne == 0 || eNbCol == 0) {
+		throw CException();
+	}
+	if (tppTableau == NULL) {
+		throw CException();
+	}
+	if (M.eNbLigne == 0 || M.eNbCol == 0) {
+		throw CException();
+	}
+	if (M.tppTableau == NULL) {
+		throw CException();
+	}
+	if (eNbLigne != M.eNbLigne) {
+		throw CException();
+	}
+	if (eNbCol != M.eNbCol) {
+		throw CException();
+	}
+	CMatrice<T> * res = new CMatrice<T>(eNbCol, eNbLigne);
+	for (int i = 0; i < eNbLigne; ++i) {
+		for (int y = 0; y < eNbCol; ++y) {
+			res->tppTableau[i][y] = tppTableau[i][y] - M.tppTableau[i][y];
+		}
+	}
+
+	return res;
+}
+
 template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw() {
 	if (eNbLigne == 0 || eNbCol == 0) {
 		throw CException();
@@ -314,20 +382,4 @@ template <typename T> ostream & CMatrice<T>::display(ostream & os) const throw()
 	os << endl;
 
 	return os;
-}
-
-template <typename T> void CMatrice<T>::pouet() const throw() {
-	if (eNbLigne == 0 || eNbCol == 0) {
-		throw CException();
-	}
-	if (tppTableau == NULL) {
-		throw CException();
-	}
-	for (int i = 0; i < eNbLigne; ++i) {
-		for (int y = 0; y < eNbCol; ++y) {
-			cout << tppTableau[i][y] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
 }

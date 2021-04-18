@@ -278,6 +278,9 @@ template <typename T> CMatrice<T> * CMatrice<T>::divide(int eVal) const throw() 
 	if (tppTableau == NULL) {
 		throw CException(CMatriceEmptyDataTab);
 	}
+	if (eVal == 0) {
+		throw CException(CMatriceDividedBy0);
+	}
 
 	// On alloue notre matrice de resultat
 	CMatrice<T> * res = new CMatrice<T>(*this);

@@ -1,10 +1,6 @@
 #ifndef CException_h
 #define CException_h
 
-
-
-
-
 class CException
 {
 private:

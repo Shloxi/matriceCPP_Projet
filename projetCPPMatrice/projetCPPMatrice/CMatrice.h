@@ -20,6 +20,7 @@ using namespace std;
 // Constantes d'erreurs liees au calculs
 #define CMatriceNotSameSize 51
 #define CMatriceNotCompatibleSize 52
+#define CMatriceDividedBy0 53
 
 
 

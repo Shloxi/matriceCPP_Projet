@@ -21,6 +21,7 @@ CException::CException() {
 	errors[12] = "Erreur : Tableau de donnees vide ou inexistant (null)";
 	errors[51] = "Erreur : Les dimensions des matrices ne sont pas egales";
 	errors[52] = "Erreur : Les dimensions des matrices ne sont pas compatibles pour cette operation";
+	errors[53] = "Erreur : La division par 0 est interdite";
 }
 
 CException::CException(int eError) {
@@ -42,6 +43,7 @@ CException::CException(int eError) {
 	errors[12] = "Erreur : Tableau de donnees vide ou inexistant (null)";
 	errors[51] = "Erreur : Les dimensions des matrices ne sont pas egales";
 	errors[52] = "Erreur : Les dimensions des matrices ne sont pas compatibles pour cette operation";
+	errors[53] = "Erreur : La division par 0 est interdite";
 }
 
 // Methods
